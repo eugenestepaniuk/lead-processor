@@ -7,4 +7,5 @@ httpx
 pytest
 ruff
 mypy
+email-validator
 

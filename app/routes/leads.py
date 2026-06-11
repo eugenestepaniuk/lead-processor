@@ -7,17 +7,21 @@ from typing import Any
 from fastapi import APIRouter
 
 from app.logger import get_logger
+from app.schemas.lead import LeadIn
 
 router = APIRouter()
 logger = get_logger(__name__)
 
 
 @router.post("/api/leads")
-def create_lead(payload: dict[str, Any]) -> dict[str, Any]:
-    """Accept a lead as raw JSON and echo it back (MVP placeholder).
+def create_lead(payload: LeadIn) -> dict[str, Any]:
+    """Accept a lead submission, validate via LeadIn, and echo it back.
 
-    Field-level validation arrives in subtask 2.1; pipeline orchestration in Block 7.
+    Full pipeline orchestration arrives in Block 7.
     """
-    logger.info("Received lead payload with %d top-level field(s)", len(payload))
-    return {"received": payload}
+    logger.info(
+        "received valid lead with %d populated fields",
+        len(payload.model_dump(exclude_none=True)),
+    )
+    return {"received": payload.model_dump()}
 
