@@ -8,4 +8,5 @@ pytest
 ruff
 mypy
 email-validator
+google-genai
 
