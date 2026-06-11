@@ -1,0 +1,13 @@
+{
+  "name": "Olena Kovalenko",
+  "email": "olena.kovalenko@example.com",
+  "phone": "+380501234567",
+  "message": "Hi, we're a team of 20 evaluating your enterprise plan. What's the pricing and could we book a demo this week?",
+  "source": "landing-pricing-page",
+  "meta": {
+    "utm_source": "google",
+    "utm_medium": "cpc",
+    "utm_campaign": "spring_sale"
+  }
+}
+

@@ -5,7 +5,7 @@ from __future__ import annotations
 from app.schemas.ai_result import CATEGORY_CRITERIA, AIResult
 
 # ---------------------------------------------------------------------------
-# 4.1 taxonomy tests (unchanged)
+# Test 1: taxonomy tests (unchanged)
 # ---------------------------------------------------------------------------
 
 def test_category_criteria_keys() -> None:
@@ -26,7 +26,7 @@ def test_unknown_criterion_mentions_fallback() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 4.2 AIResult model tests
+# Test 2: AIResult model tests
 # ---------------------------------------------------------------------------
 
 def test_ai_result_valid_full_json() -> None:

@@ -91,7 +91,7 @@ def test_analyze_lead_api_failure_returns_none_and_logs_warning(
 
 
 # ---------------------------------------------------------------------------
-# Test 4 (4.2): happy-path — valid JSON response parses into AIResult
+# Test 4: happy-path — valid JSON response parses into AIResult
 # ---------------------------------------------------------------------------
 
 def test_analyze_lead_happy_path_returns_ai_result(
@@ -130,7 +130,7 @@ def test_analyze_lead_happy_path_returns_ai_result(
 
 
 # ---------------------------------------------------------------------------
-# Tests 5-7 (4.3): invalid model responses fall back to category="unknown"
+# Tests 5-7: invalid model responses fall back to category="unknown"
 # ---------------------------------------------------------------------------
 
 def _make_fake_env(

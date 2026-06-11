@@ -53,8 +53,6 @@ def test_init_db_called_on_startup(monkeypatch: pytest.MonkeyPatch) -> None:
         called["v"] = True
 
     monkeypatch.setattr("app.main.init_db", fake_init_db)
-    from fastapi.testclient import TestClient
-    from app.main import app
     with TestClient(app) as client:
         client.get("/health")
     assert called["v"] is True

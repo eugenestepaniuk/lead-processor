@@ -65,7 +65,7 @@ def test_send_message_disabled_skips_network(monkeypatch):
 
 
 # ---------------------------------------------------------------------------
-# 6.2 formatter tests
+# Test 2: formatter tests
 # ---------------------------------------------------------------------------
 
 
@@ -131,7 +131,7 @@ def test_format_lead_message_unknown_category_is_shown():
 
 
 # ---------------------------------------------------------------------------
-# 6.3 resilience tests
+# Test 3: resilience tests
 # ---------------------------------------------------------------------------
 
 

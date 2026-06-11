@@ -1,0 +1,28 @@
+# --- Secrets (never commit) ---
+.env
+
+# --- Virtual environments ---
+.venv/
+venv/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# --- SQLite DB: keep the folder, ignore its contents ---
+data/*
+!data/.gitkeep
+
+# --- Tool caches ---
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# --- IDE ---
+.idea/
+.vscode/
+
+# --- OS ---
+.DS_Store
+

@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import pytest
 
-from app.schemas.lead import LeadIn
+from app.pipeline.process_lead import process_lead
 from app.schemas.ai_result import AIResult
-from app.pipeline.process_lead import process_lead, ProcessResult
+from app.schemas.lead import LeadIn
 
 
 def test_happy_path(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -95,15 +95,15 @@ def test_storage_failure_propagates(monkeypatch: pytest.MonkeyPatch) -> None:
     lead = LeadIn(name="Carol", email="carol@example.com")
 
     import app.pipeline.process_lead as mod
-    monkeypatch.setattr(mod, "normalize_lead", lambda l: (calls.append("normalize") or l))
-    monkeypatch.setattr(mod, "analyze_lead", lambda l: (calls.append("analyze") or None))
+    monkeypatch.setattr(mod, "normalize_lead", lambda ld: (calls.append("normalize") or ld))
+    monkeypatch.setattr(mod, "analyze_lead", lambda ld: (calls.append("analyze") or None))
 
     def fake_save(lead: LeadIn, ai: AIResult | None) -> int:
         calls.append("save")
         raise RuntimeError("db down")
 
     monkeypatch.setattr(mod, "save_lead", fake_save)
-    monkeypatch.setattr(mod, "format_lead_message", lambda l, a: (calls.append("format") or ""))
+    monkeypatch.setattr(mod, "format_lead_message", lambda ld, a: (calls.append("format") or ""))
     monkeypatch.setattr(mod, "send_message", lambda t: (calls.append("send") or True))
 
     with pytest.raises(RuntimeError, match="db down"):
@@ -119,10 +119,10 @@ def test_ai_unknown_still_persisted_and_notified(monkeypatch: pytest.MonkeyPatch
     ai_unknown = AIResult(category="unknown", summary=None, reason=None)
 
     import app.pipeline.process_lead as mod
-    monkeypatch.setattr(mod, "normalize_lead", lambda l: (calls.append("normalize") or l))
-    monkeypatch.setattr(mod, "analyze_lead", lambda l: (calls.append("analyze") or ai_unknown))
-    monkeypatch.setattr(mod, "save_lead", lambda l, a: (calls.append("save") or 99))
-    monkeypatch.setattr(mod, "format_lead_message", lambda l, a: (calls.append("format") or "msg"))
+    monkeypatch.setattr(mod, "normalize_lead", lambda ld: (calls.append("normalize") or ld))
+    monkeypatch.setattr(mod, "analyze_lead", lambda ld: (calls.append("analyze") or ai_unknown))
+    monkeypatch.setattr(mod, "save_lead", lambda ld, a: (calls.append("save") or 99))
+    monkeypatch.setattr(mod, "format_lead_message", lambda ld, a: (calls.append("format") or "msg"))
     monkeypatch.setattr(mod, "send_message", lambda t: (calls.append("send") or True))
 
     result = process_lead(lead)
@@ -132,4 +132,3 @@ def test_ai_unknown_still_persisted_and_notified(monkeypatch: pytest.MonkeyPatch
     assert result.summary is None
     assert result.lead_id == 99
     assert result.notified is True
-

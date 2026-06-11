@@ -1,7 +1,7 @@
 """SQLite storage helper — connection factory, schema initialisation, and INSERT.
 
-Block 5, subtask 5.1: connection helper + leads table creation.
-Block 5, subtask 5.2: save_lead INSERT helper.
+Connection helper + leads table creation.
+Save_lead INSERT helper.
 """
 
 from __future__ import annotations

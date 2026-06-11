@@ -1,8 +1,8 @@
 """Prompt builders for the AI summary service.
 
 Pure, deterministic functions — no network, no settings, no I/O.
-Block 3, subtask 3.2: summary prompt only.
-Block 4, subtask 4.2: combined analysis prompt (summary + classification).
+Summary prompt only.
+Combined analysis prompt (summary + classification).
 """
 
 from __future__ import annotations
