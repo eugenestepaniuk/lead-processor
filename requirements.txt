@@ -1,5 +1,6 @@
 fastapi
 uvicorn[standard]
+slowapi
 pydantic>=2
 pydantic-settings
 python-dotenv

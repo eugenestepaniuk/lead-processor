@@ -26,11 +26,14 @@ class Settings(BaseSettings):
     port: int = 8000
     log_level: str = "info"
     app_env: str = "development"
+    # Comma-separated list of allowed CORS origins (e.g. https://your-landing.example.com).
+    # Empty by default — no cross-origin access permitted.
+    cors_origins: str = ""
 
     # --- AI (Gemini) ---
     ai_enabled: bool = True
     gemini_api_key: str | None = None
-    ai_model: str = "gemini-1.5-flash"
+    ai_model: str = "gemini-2.5-flash"
 
     # --- Storage ---
     sqlite_path: str = "./data/leads.db"
@@ -73,7 +76,3 @@ class Settings(BaseSettings):
 def get_settings() -> Settings:
     """Return the cached Settings instance (created once per process)."""
     return Settings()
-
-
-
-
